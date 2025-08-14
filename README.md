@@ -1,33 +1,18 @@
-# HTTP API Server para FiveM
+# HTTP API Server for FiveM
 
-Sistema de API HTTP configurável para servidores FiveM com integração ao vRP.
+Configurable HTTP API system for FiveM servers with vRP integration.
 
-## 🚀 Características
+## Features
 
-- **Modular**: Controladores, utilitários e roteador separados
-- **Configurável**: Todas as configurações centralizadas no `config.lua`
-- **Flexível**: Endpoints podem ser habilitados/desabilitados individualmente
-- **Seguro**: Rate limiting e validação de requisições
-- **Extensível**: Fácil adição de novos endpoints e funcionalidades
+- **Modular** – Separate controllers, utilities, and router  
+- **Configurable** – All settings centralized in `config.lua`  
+- **Flexible** – Endpoints can be enabled or disabled individually  
+- **Secure** – Rate limiting and request validation  
+- **Extensible** – Easy to add new endpoints and features  
 
-## 📁 Estrutura do Projeto
+## Configuration
 
-```
-http-api-server/
-├── config.lua                    # Configurações centralizadas
-├── utils.lua                     # Utilitários e funções auxiliares
-├── router.lua                    # Sistema de roteamento
-├── server.lua                    # Servidor principal
-├── controllers/
-│   ├── PlayerController.lua      # Controlador de jogadores
-│   └── ServerController.lua      # Controlador do servidor
-├── fxmanifest.lua                # Manifesto do FiveM
-└── README.md                     # Documentação
-```
-
-## ⚙️ Configuração
-
-### Configuração Básica (`config.lua`)
+### Basic Configuration (`config.lua`)
 
 ```lua
 local CONFIG = {
@@ -47,41 +32,45 @@ local CONFIG = {
 }
 ```
 
-### Personalização de Endpoints
+### Customizing Endpoints
 
-Para desabilitar um endpoint, altere sua configuração:
+To disable an endpoint, change its configuration:
 
 ```lua
 endpoints = {
     enabled = {
-        players_stats = false,  -- Desabilita estatísticas
-        players_search = false  -- Desabilita busca
+        players_stats = false,  -- Disable player statistics
+        players_search = false  -- Disable player search
     }
 }
 ```
 
-## 📊 Endpoints Disponíveis
+## Available Endpoints
 
-### Servidor
-- `GET /` - Documentação da API
-- `GET /health` - Health check
-- `GET /server/info` - Informações do servidor
+### Server
 
-### Jogadores
-- `GET /players` - Lista todos os jogadores online
-- `GET /players/active` - Contagem de jogadores ativos
-- `GET /players/stats` - Estatísticas completas
-- `GET /players/top` - Top jogadores (com filtros)
-- `GET /players/search` - Buscar jogadores
-- `GET /players/kit/{kit}` - Jogadores por kit
-- `GET /players/{id}` - Informações de um jogador específico
+- `GET /` – API documentation
+- `GET /health` – Health check
+- `GET /server/info` – Server information
 
-### Parâmetros de Query
+### Players
 
-**Top Players (`/players/top`)**
-- `limit`: Número de resultados (padrão: 10, máximo: 100)
-- `order`: Ordenação (hours, bank, age)
+- `GET /players` – List all online players
+- `GET /players/active` – Count of active players
+- `GET /players/stats` – Complete player statistics
+- `GET /players/top` – Top players (with filters)
+- `GET /players/search` – Search for players
+- `GET /players/kit/{kit}` – Players by kit
+- `GET /players/{id}` – Specific player information
 
-**Buscar Players (`/players/search`)**
-- `q`: Termo de busca (obrigatório)
-- `limit`: Número de resultados (padrão: 20)
+## Query Parameters
+
+### Top Players (`/players/top`)
+
+- `limit` – Number of results (default: 10, max: 100)
+- `order` – Sorting (hours, bank, age)
+
+### Search Players (`/players/search`)
+
+- `q` – Search term (required)
+- `limit` – Number of results (default: 20)
